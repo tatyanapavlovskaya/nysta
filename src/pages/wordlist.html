@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nysta — my word list</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f3;
+      color: #1a1a1a;
+      padding: 32px 16px;
+      min-height: 100vh;
+    }
+    .page { max-width: 640px; margin: 0 auto; }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: 20px; font-weight: 500; }
+    .stats-row { display: flex; gap: 8px; margin-bottom: 16px; }
+    .stat {
+      flex: 1;
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 0.5px solid rgba(0,0,0,0.08);
+    }
+    .stat-num { font-size: 20px; font-weight: 500; }
+    .stat-label { font-size: 11px; color: #888; margin-top: 1px; }
+    .filter-row { display: flex; gap: 6px; margin-bottom: 16px; }
+    .filter-btn {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 0.5px solid rgba(0,0,0,0.15);
+      background: transparent;
+      color: #666;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .filter-btn.active {
+      background: #1a1a1a;
+      color: #fff;
+      border-color: #1a1a1a;
+    }
+    .word-card {
+      background: #fff;
+      border: 0.5px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .word-hero {
+      padding: 12px 16px 10px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .word-hero.known { background: #E1F5EE; }
+    .word-hero.saved { background: #E6F1FB; }
+    .hero-left { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+    .word-headword { font-size: 20px; font-weight: 500; white-space: nowrap; }
+    .word-headword.known { color: #085041; }
+    .word-headword.saved { color: #0C447C; }
+    .word-pos { font-size: 11px; white-space: nowrap; }
+    .word-pos.known { color: #0F6E56; }
+    .word-pos.saved { color: #185FA5; }
+    .status-badge {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+    .badge-known { background: #9FE1CB; color: #04342C; }
+    .badge-saved { background: #B5D4F4; color: #042C53; }
+    .word-body { padding: 10px 16px 12px; }
+    .word-def { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 3px; }
+    .word-def-en { font-size: 11px; color: #aaa; font-style: italic; line-height: 1.45; margin-bottom: 5px; }
+    .word-ctx {
+      font-size: 11px;
+      color: #888;
+      font-style: italic;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .word-ctx strong { font-style: normal; color: #666; font-weight: 500; }
+    .word-meta {
+      font-size: 11px;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .remove-btn {
+      font-size: 11px;
+      color: #bbb;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+    }
+    .remove-btn:hover { color: #A32D2D; }
+    .empty {
+      text-align: center;
+      padding: 48px 16px;
+      color: #888;
+      font-size: 14px;
+    }
+    .export-btn {
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      border: 0.5px solid rgba(0,0,0,0.15);
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .export-btn:hover { background: #f5f5f3; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <h1>my word list</h1>
+      <button class="export-btn" id="export-btn">export</button>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num" id="stat-saved">0</div><div class="stat-label">saved</div></div>
+      <div class="stat"><div class="stat-num" id="stat-known">0</div><div class="stat-label">known</div></div>
+      <div class="stat"><div class="stat-num" id="stat-total">0</div><div class="stat-label">total</div></div>
+    </div>
+
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">all</button>
+      <button class="filter-btn" data-filter="saved">saved</button>
+      <button class="filter-btn" data-filter="known">known</button>
+    </div>
+
+    <div id="word-list"></div>
+  </div>
+
+  <script src="wordlist.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Nysta",
+  "version": "0.1.0",
+  "description": "Pull the thread on any word. Swedish language learning assistant.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://api.anthropic.com/*",
+    "https://lexin.nada.kth.se/*",
+    "https://en.wiktionary.org/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/content.js"],
+      "css": ["src/content/popup.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "src/toolbar/toolbar.html",
+    "default_title": "Nysta — pull the thread on any word",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "src/settings/settings.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["src/content/popup.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

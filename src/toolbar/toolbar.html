@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nysta</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; width: 240px; background: #fff; color: #1a1a1a; }
+    .header { padding: 14px 16px 12px; border-bottom: 0.5px solid rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: space-between; }
+    .brand { font-size: 15px; font-weight: 500; }
+    .lang-pill { font-size: 11px; background: #f5f5f3; padding: 2px 8px; border-radius: 20px; color: #666; }
+    .active-bar { padding: 10px 16px; border-bottom: 0.5px solid rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .active-left { display: flex; align-items: center; gap: 7px; }
+    .active-dot { width: 7px; height: 7px; border-radius: 50%; background: #ddd; transition: background 0.2s; flex-shrink: 0; }
+    .active-status { font-size: 12px; color: #888; }
+    .toggle-btn { font-size: 12px; padding: 4px 12px; border-radius: 20px; border: 0.5px solid rgba(0,0,0,0.15); background: #1a1a1a; color: #fff; cursor: pointer; font-family: inherit; white-space: nowrap; }
+    .stats { display: flex; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
+    .stat { flex: 1; text-align: center; padding: 12px 0; }
+    .stat + .stat { border-left: 0.5px solid rgba(0,0,0,0.1); }
+    .stat-num { font-size: 20px; font-weight: 500; }
+    .stat-label { font-size: 11px; color: #888; margin-top: 1px; }
+    .nav { padding: 6px 8px; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
+    .nav-btn { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px; border-radius: 8px; border: none; background: transparent; cursor: pointer; font-family: inherit; font-size: 13px; color: #1a1a1a; text-align: left; }
+    .nav-btn:hover { background: #f5f5f3; }
+    .nav-icon { font-size: 15px; width: 20px; text-align: center; color: #888; }
+    .footer { padding: 6px 8px; }
+    .footer-btn { display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px; border-radius: 8px; border: none; background: transparent; cursor: pointer; font-family: inherit; font-size: 13px; color: #666; text-align: left; }
+    .footer-btn:hover { background: #f5f5f3; }
+    .no-key-banner { margin: 8px; padding: 8px 10px; background: #FAEEDA; border-radius: 8px; font-size: 12px; color: #633806; line-height: 1.4; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="brand">Nysta</span>
+    <span class="lang-pill" id="lang-pill">Swedish · intermediate</span>
+  </div>
+
+  <div class="active-bar">
+    <div class="active-left">
+      <div class="active-dot" id="active-indicator"></div>
+      <span class="active-status" id="active-status">paused</span>
+    </div>
+    <button class="toggle-btn" id="toggle-btn">activate</button>
+  </div>
+
+  <div id="no-key-banner" class="no-key-banner" style="display:none">
+    No API key set. <a href="#" id="open-settings-banner" style="color:#854F0B">Open settings →</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="stat-saved">–</div><div class="stat-label">saved</div></div>
+    <div class="stat"><div class="stat-num" id="stat-known">–</div><div class="stat-label">known</div></div>
+    <div class="stat"><div class="stat-num" id="stat-total">–</div><div class="stat-label">total</div></div>
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn" id="btn-wordlist"><span class="nav-icon">📚</span>my word list</button>
+    <button class="nav-btn" id="btn-quiz"><span class="nav-icon">🎯</span>quiz me</button>
+  </div>
+
+  <div class="footer">
+    <button class="footer-btn" id="btn-settings"><span class="nav-icon">⚙️</span>settings</button>
+  </div>
+
+  <script src="toolbar.js"></script>
+</body>
+</html>

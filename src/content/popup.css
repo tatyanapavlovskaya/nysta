@@ -1,0 +1,420 @@
+:host {
+  all: initial;
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.nysta-card {
+  background: #ffffff;
+  border: 0.5px solid rgba(0,0,0,0.15);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13), 0 1px 4px rgba(0,0,0,0.07);
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nysta-card::-webkit-scrollbar { width: 4px; }
+.nysta-card::-webkit-scrollbar-track { background: transparent; }
+.nysta-card::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+
+.nysta-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  cursor: grab;
+  user-select: none;
+}
+.nysta-header:active {
+  cursor: grabbing;
+}
+
+.nysta-close-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: transparent;
+  color: #bbb;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: inherit;
+  transition: background 0.1s, color 0.1s;
+}
+.nysta-close-btn:hover {
+  background: rgba(0,0,0,0.06);
+  color: #555;
+}
+
+.nysta-word {
+  font-size: 19px;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.nysta-meta {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.nysta-context-note {
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nysta-context-note::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1D9E75;
+  flex-shrink: 0;
+}
+
+.nysta-tag {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.nysta-tag-pos { background: #E6F1FB; color: #0C447C; }
+.nysta-tag-reg { background: #FAEEDA; color: #633806; }
+
+.nysta-status-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.nysta-badge-known { background: #9FE1CB; color: #04342C; }
+.nysta-badge-saved { background: #B5D4F4; color: #042C53; }
+
+
+.nysta-def-sv {
+  font-size: 13px;
+  color: #1a1a1a;
+  line-height: 1.55;
+  margin-bottom: 4px;
+}
+
+.nysta-def-en {
+  font-size: 12px;
+  color: #999;
+  line-height: 1.5;
+  margin-bottom: 6px;
+  font-style: italic;
+}
+
+.nysta-example {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+  margin: 3px 0;
+  line-height: 1.45;
+  padding-left: 14px;
+  position: relative;
+}
+.nysta-example::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #bbb;
+  font-style: normal;
+}
+
+.nysta-divider {
+  border: none;
+  border-top: 0.5px solid rgba(0,0,0,0.09);
+  margin: 10px 0;
+}
+
+.nysta-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #aaa;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.nysta-etym {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.nysta-synonym-row {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 3px;
+}
+
+.nysta-synonym {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 0.5px solid rgba(0,0,0,0.14);
+  color: #555;
+  background: #fff;
+}
+
+.nysta-other-meaning {
+  font-size: 12px;
+  color: #666;
+  padding: 5px 0;
+  border-top: 0.5px solid rgba(0,0,0,0.07);
+  line-height: 1.4;
+  display: flex;
+  gap: 7px;
+}
+.nysta-sense-num {
+  font-size: 10px;
+  color: #bbb;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.nysta-quick-facts {
+  background: #f7f6f4;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.nysta-qf-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+.nysta-qf-label { color: #999; min-width: 82px; flex-shrink: 0; }
+.nysta-qf-value { color: #1a1a1a; font-weight: 500; }
+
+.nysta-qmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(0,0,0,0.15);
+  font-size: 9px;
+  color: #aaa;
+  cursor: default;
+  flex-shrink: 0;
+  position: relative;
+}
+.nysta-tooltip {
+  display: none;
+  position: fixed;
+  background: #fff;
+  border: 0.5px solid rgba(0,0,0,0.14);
+  border-radius: 7px;
+  padding: 6px 9px;
+  font-size: 11px;
+  color: #555;
+  width: 200px;
+  max-width: calc(100vw - 32px);
+  line-height: 1.45;
+  z-index: 2147483647;
+  font-weight: 400;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.nysta-qmark:hover .nysta-tooltip { display: block; }
+
+.nysta-accordion {
+  border: 0.5px solid rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.nysta-acc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-align: left;
+}
+.nysta-acc-header:hover { background: #f7f6f4; }
+
+.nysta-acc-chevron {
+  font-size: 16px;
+  color: #aaa;
+  display: inline-block;
+  transition: transform 0.2s;
+  font-style: normal;
+  line-height: 1;
+}
+
+.nysta-acc-body {
+  display: none;
+  padding: 0 12px 12px;
+  border-top: 0.5px solid rgba(0,0,0,0.08);
+}
+.nysta-acc-body.open { display: block; }
+
+.nysta-acc-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #aaa;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 10px 0 5px;
+}
+
+.nysta-form-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.nysta-form-table td { padding: 4px 5px; }
+.nysta-form-table td:first-child { color: #999; width: 50%; }
+.nysta-form-table td:last-child { color: #1a1a1a; font-weight: 500; }
+.nysta-form-table tr:nth-child(even) td { background: #f7f6f4; }
+
+.nysta-phrase-row {
+  font-size: 12px;
+  padding: 4px 0;
+  border-top: 0.5px solid rgba(0,0,0,0.07);
+  display: flex;
+  gap: 8px;
+}
+.nysta-phrase-word { font-weight: 500; color: #1a1a1a; min-width: 100px; }
+.nysta-phrase-gloss { color: #666; }
+
+.nysta-translation-block {
+  border: 0.5px solid rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 10px;
+  background: #fafafa;
+}
+.nysta-tl-label { font-size: 10px; font-weight: 600; color: #aaa; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+.nysta-tl-word { font-size: 15px; font-weight: 500; color: #1a1a1a; margin-bottom: 4px; }
+.nysta-tl-ctx { font-size: 12px; color: #666; font-style: italic; line-height: 1.5; }
+.nysta-tl-note { font-size: 11px; color: #999; margin-top: 5px; line-height: 1.4; }
+
+.nysta-btn-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+.nysta-btn {
+  flex: 1;
+  font-size: 12px;
+  padding: 7px 0;
+  border-radius: 8px;
+  border: 0.5px solid rgba(0,0,0,0.14);
+  background: transparent;
+  color: #1a1a1a;
+  cursor: pointer;
+  text-align: center;
+  font-family: inherit;
+  transition: background 0.12s;
+}
+.nysta-btn:hover { background: #f7f6f4; }
+.nysta-btn-save { background: #f7f6f4; }
+
+.nysta-thread-anim {
+  margin-top: 14px;
+  height: 10px;
+  position: relative;
+}
+.nysta-thread-anim::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  margin-top: -0.5px;
+  background: #e2e0da;
+  border-radius: 1px;
+}
+.nysta-thread-anim::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: #c8c6be;
+  animation: nysta-thread-travel 2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+@keyframes nysta-thread-travel {
+  0%, 100% { left: 0%; }
+  50%       { left: calc(100% + 3px); }
+}
+
+.nysta-loading {
+  font-size: 12px;
+  color: #bbb;
+  margin-top: 7px;
+  font-style: italic;
+  animation: nysta-pulse 1.8s ease-in-out infinite;
+}
+.nysta-error { font-size: 13px; color: #A32D2D; margin-top: 8px; line-height: 1.4; }
+
+@keyframes nysta-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.nysta-skeleton-line {
+  height: 11px;
+  background: linear-gradient(90deg, #f0f0ee 25%, #e8e8e5 50%, #f0f0ee 75%);
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: nysta-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes nysta-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+

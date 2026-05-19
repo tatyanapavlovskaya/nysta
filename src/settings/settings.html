@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nysta — settings</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f3;
+      color: #1a1a1a;
+      padding: 32px 16px;
+      min-height: 100vh;
+    }
+    .page { max-width: 520px; margin: 0 auto; }
+    h1 { font-size: 20px; font-weight: 500; margin-bottom: 24px; }
+    .section { margin-bottom: 28px; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 500;
+      color: #888;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .card {
+      background: #fff;
+      border: 0.5px solid rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 0.5px solid rgba(0,0,0,0.08);
+      gap: 16px;
+    }
+    .row:last-child { border-bottom: none; }
+    .row-label { font-size: 14px; color: #1a1a1a; }
+    .row-sub { font-size: 12px; color: #888; margin-top: 1px; }
+    select, input[type=text], input[type=password] {
+      font-size: 13px;
+      font-family: inherit;
+      color: #1a1a1a;
+      background: #f5f5f3;
+      border: 0.5px solid rgba(0,0,0,0.15);
+      border-radius: 8px;
+      padding: 5px 10px;
+      flex-shrink: 0;
+    }
+    input[type=text], input[type=password] {
+      width: 220px;
+      font-size: 12px;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 16px;
+      border-bottom: 0.5px solid rgba(0,0,0,0.08);
+      gap: 16px;
+    }
+    .checkbox-row:last-child { border-bottom: none; }
+    .checkbox-row label {
+      font-size: 14px;
+      color: #1a1a1a;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+    .checkbox-row input[type=checkbox] {
+      width: 16px;
+      height: 16px;
+      accent-color: #1a1a1a;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .level-tabs {
+      display: flex;
+      border: 0.5px solid rgba(0,0,0,0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+    .level-tab {
+      font-size: 12px;
+      padding: 6px 16px;
+      border: none;
+      background: transparent;
+      color: #666;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .level-tab.active {
+      background: #1a1a1a;
+      color: #fff;
+    }
+    .note {
+      font-size: 12px;
+      color: #888;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .export-btn, .save-btn {
+      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: 0.5px solid rgba(0,0,0,0.15);
+      background: transparent;
+      color: #1a1a1a;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .save-btn {
+      background: #1a1a1a;
+      color: #fff;
+      border-color: #1a1a1a;
+      margin-top: 24px;
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+    }
+    .save-btn:hover { background: #333; }
+    .export-btn:hover { background: #f5f5f3; }
+    .api-key-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .api-key-hint { font-size: 11px; color: #888; }
+    .api-key-hint a { color: #185FA5; }
+    #save-status {
+      font-size: 13px;
+      color: #1D9E75;
+      margin-top: 8px;
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>settings</h1>
+
+    <div class="section">
+      <p class="section-title">API</p>
+      <div class="card">
+        <div class="row api-key-row">
+          <div>
+            <div class="row-label">Anthropic API key</div>
+            <div class="row-sub api-key-hint">
+              Get yours at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>
+            </div>
+          </div>
+          <input type="password" id="api-key" placeholder="sk-ant-…" autocomplete="off">
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-title">language & level</p>
+      <div class="card">
+        <div class="row">
+          <div class="row-label">language I'm learning</div>
+          <select id="target-language">
+            <option value="swedish" selected>Swedish</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="row-label">my level</div>
+          <select id="level">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate" selected>Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+        <div class="row">
+          <div>
+            <div class="row-label">explanation language</div>
+            <div class="row-sub">the language definitions are written in</div>
+          </div>
+          <select id="explanation-language">
+            <option value="both">English + Swedish</option>
+            <option value="swedish" selected>Swedish only</option>
+            <option value="english">English only</option>
+          </select>
+        </div>
+        <div class="row">
+          <div>
+            <div class="row-label">grammar explanations</div>
+            <div class="row-sub">for highlighted grammar constructions</div>
+          </div>
+          <select id="grammar-language">
+            <option value="english" selected>English</option>
+            <option value="swedish">Swedish</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="section-title">popup content</p>
+      <div class="level-tabs">
+        <button class="level-tab" data-level="beginner" onclick="switchLevel('beginner', this)">Beginner</button>
+        <button class="level-tab active" data-level="intermediate" onclick="switchLevel('intermediate', this)">Intermediate</button>
+        <button class="level-tab" data-level="advanced" onclick="switchLevel('advanced', this)">Advanced</button>
+      </div>
+      <div class="card" id="popup-checkboxes">
+        <div class="checkbox-row"><label><input type="checkbox" data-key="wordFormation"> Word formation</label></div>
+        <div class="checkbox-row"><label><input type="checkbox" data-key="synonyms"> Synonyms</label></div>
+        <div class="checkbox-row"><label><input type="checkbox" data-key="relatedForms"> Related forms</label></div>
+        <div class="checkbox-row"><label><input type="checkbox" data-key="otherMeanings"> Other meanings</label></div>
+        <div class="checkbox-row"><label><input type="checkbox" data-key="commonPhrases"> Common phrases</label></div>
+        <div class="checkbox-row"><label><input type="checkbox" data-key="frequency"> Frequency</label></div>
+        <div class="checkbox-row"><label><input type="checkbox" data-key="register"> Register</label></div>
+      </div>
+      <p class="note" id="popup-note">definition, context snippet and examples are always shown</p>
+    </div>
+
+    <div class="section">
+      <p class="section-title">vocab list</p>
+      <div class="card">
+        <div class="row">
+          <div>
+            <div class="row-label">export word list</div>
+            <div class="row-sub">downloads all saved and known words as TSV</div>
+          </div>
+          <button class="export-btn" id="export-btn">export</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="save-btn" id="save-btn">save settings</button>
+    <p id="save-status">✓ settings saved</p>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>
